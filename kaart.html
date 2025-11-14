@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Zomboid – Kaart</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+</head>
+<body style="background-color:#1a1a1a; color:#f2f2f2;">
+
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x">
+
+      <div class="cell small-12 medium-3 large-2 callout" style="background-color:#2c2c2c;">
+        <h4 class="text-center" style="color:#e74c3c;">Zomboid Stats</h4>
+        <ul class="vertical menu">
+          <li><a href="index.html" style="color:#f2f2f2;">Dashboard</a></li>
+          <li><a href="personage.html" style="color:#f2f2f2;">Personage</a></li>
+          <li><a href="inventaris.html" style="color:#f2f2f2;">Inventaris</a></li>
+          <li class="is-active"><a href="#" style="color:#f2f2f2;">Kaart</a></li>
+        </ul>
+      </div>
+
+      <div class="cell auto">
+        <div class="grid-x grid-padding-x grid-margin-y">
+
+          <div class="cell small-12">
+            <h2 style="color:#e74c3c;">Kaart</h2>
+            <p>Bekijk de wereld en voeg notities toe over interessante locaties.</p>
+            <hr>
+          </div>
+
+<div class="grid-x align-center">
+  <div class="cell small-12 medium-10">
+    <img src="zomboidmap.png" alt="Project Zomboid Kaart" style="width:100%; border:1px solid #444;">
+  </div>
+</div>
+
+
+          <div class="cell small-12">
+            <div class="callout" style="background-color:#333;">
+              <h4>Bekende Locaties</h4>
+              <table id="locatieTabel">
+                <thead>
+                  <tr>
+                    <th>Naam</th>
+                    <th>Beschrijving</th>
+                    <th>Gevaren</th>
+                    <th>Bezocht</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>West Point Politiebureau</td>
+                    <td>Wapens en munitie beschikbaar</td>
+                    <td>Zombies binnen, glas kapot</td>
+                    <td>✔️</td>
+                  </tr>
+                  <tr>
+                    <td>Riverside Supermarkt</td>
+                    <td>Veel voedsel, maar open terrein</td>
+                    <td>Hoge zombie-dichtheid</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Boerderij aan Route 16</td>
+                    <td>Goede schuilplaats</td>
+                    <td>Weinig middelen</td>
+                    <td>✔️</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="cell small-12">
+            <div class="callout" style="background-color:#333;">
+              <h4>Nieuwe Locatie Toevoegen</h4>
+              <form id="locatieForm">
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3">
+                    <label>Naam
+                      <input type="text" id="locatieNaam" placeholder="Bijv. Spiffo’s Diner" required>
+                    </label>
+                  </div>
+                  <div class="cell medium-4">
+                    <label>Beschrijving
+                      <input type="text" id="beschrijving" placeholder="Wat is er te vinden?" required>
+                    </label>
+                  </div>
+                  <div class="cell medium-3">
+                    <label>Gevaren
+                      <input type="text" id="gevaar" placeholder="Bijv. horde zombies">
+                    </label>
+                  </div>
+                  <div class="cell medium-2">
+                    <label>Bezocht
+                      <select id="bezocht">
+                        <option value="❌">Nee</option>
+                        <option value="✔️">Ja</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="cell small-12 text-right">
+                    <button type="submit" class="button alert">Locatie toevoegen</button>
+                    <button type="reset" class="button secondary">Reset</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("locatieForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const naam = document.getElementById("locatieNaam").value.trim();
+      const beschrijving = document.getElementById("beschrijving").value.trim();
+      const gevaar = document.getElementById("gevaar").value.trim() || "—";
+      const bezocht = document.getElementById("bezocht").value;
+
+      if (!naam || !beschrijving) return;
+
+      const tabel = document.getElementById("locatieTabel").querySelector("tbody");
+      const rij = document.createElement("tr");
+
+      rij.innerHTML = `
+        <td>${naam}</td>
+        <td>${beschrijving}</td>
+        <td>${gevaar}</td>
+        <td>${bezocht}</td>
+      `;
+
+      tabel.appendChild(rij);
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>

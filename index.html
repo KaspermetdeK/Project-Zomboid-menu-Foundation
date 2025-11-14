@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Zomboid Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+</head>
+<body class="bg-dark" style="background-color:#1a1a1a; color:#f2f2f2;">
+
+  <div class="grid-container fluid">
+    <div class="grid-x grid-padding-x">
+
+      <div class="cell small-12 medium-3 large-2 callout" style="background-color:#2c2c2c;">
+        <h4 class="text-center" style="color:#e74c3c;">Zomboid Stats</h4>
+        <ul class="vertical menu">
+          <li><a href="index.html" style="color:#f2f2f2;">Dashboard</a></li>
+          <li><a href="personage.html" style="color:#f2f2f2;">Personage</a></li>
+          <li><a href="inventaris.html" style="color:#f2f2f2;">Inventaris</a></li>
+          <li><a href="kaart.html" style="color:#f2f2f2;">Kaart</a></li>
+        </ul>
+      </div>
+
+      <div class="cell auto">
+        <div class="grid-x grid-padding-x grid-margin-y">
+
+          <div class="cell small-12">
+            <h2 style="color:#e74c3c;">Project Zomboid Overlevingsdashboard</h2>
+            <p>Monitor je voortgang, gezondheid en middelen.</p>
+            <hr>
+          </div>
+
+          <div class="cell small-12 medium-4">
+            <div class="callout" style="background-color:#333;">
+              <h5>Gezondheid</h5>
+              <div class="progress alert">
+                <div class="progress-meter" style="width:75%"></div>
+              </div>
+              <p>75% gezond</p>
+            </div>
+          </div>
+
+          <div class="cell small-12 medium-4">
+            <div class="callout" style="background-color:#333;">
+              <h5>Voedselvoorraad</h5>
+              <div class="progress success">
+                <div class="progress-meter" style="width:60%"></div>
+              </div>
+              <p>60% voorraad beschikbaar</p>
+            </div>
+          </div>
+
+          <div class="cell small-12 medium-4">
+            <div class="callout" style="background-color:#333;">
+              <h5>Munitie</h5>
+              <div class="progress warning">
+                <div class="progress-meter" style="width:35%"></div>
+              </div>
+              <p>35% munitie over</p>
+            </div>
+          </div>
+
+          <div class="cell small-12">
+            <div class="callout" style="background-color:#333;">
+              <h4>Zombies gedood per dag</h4>
+              <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; background:#222; border:1px solid #444;">
+         
+                <line x1="50" y1="250" x2="750" y2="250" stroke="#888" stroke-width="1" />
+                <line x1="50" y        1="30" x2="50" y2="250" stroke="#888" stroke-width="1" />
+
+                <polyline
+                  points="100,210 200,170 300,150 400,160 500,130 600,80"
+                  fill="none"
+                  stroke="#e74c3c"
+                  stroke-width="2"
+                />
+
+                <circle cx="100" cy="210" r="4" fill="#f1c40f"/>
+                <circle cx="200" cy="170" r="4" fill="#f1c40f"/>
+                <circle cx="300" cy="150" r="4" fill="#f1c40f"/>
+                <circle cx="400" cy="160" r="4" fill="#f1c40f"/>
+                <circle cx="500" cy="130" r="4" fill="#f1c40f"/>
+                <circle cx="600" cy="80" r="4" fill="#f1c40f"/>
+
+                <text x="90" y="270" fill="#f2f2f2" font-size="14">Dag 1</text>
+                <text x="190" y="270" fill="#f2f2f2" font-size="14">Dag 2</text>
+                <text x="290" y="270" fill="#f2f2f2" font-size="14">Dag 3</text>
+                <text x="390" y="270" fill="#f2f2f2" font-size="14">Dag 4</text>
+                <text x="490" y="270" fill="#f2f2f2" font-size="14">Dag 5</text>
+                <text x="590" y="270" fill="#f2f2f2" font-size="14">Dag 6</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="cell small-12">
+            <div class="callout" style="background-color:#333;">
+              <h4>Overlevingsdata</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Datum</th>
+                    <th>Locatie</th>
+                    <th>Zombies Verslagen</th>
+                    <th>Gezondheid (%)</th>
+                  </tr>
+                </thead>
+                <tbody id="dataTable">
+                  <tr>
+                    <td>2025-11-13</td>
+                    <td>Riverside</td>
+                    <td>12</td>
+                    <td>75</td>
+                  </tr>
+                  <tr>
+                    <td>2025-11-12</td>
+                    <td>Muldraugh</td>
+                    <td>8</td>
+                    <td>82</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="cell small-12">
+            <div class="callout" style="background-color:#333;">
+              <h4>Nieuw datapunt toevoegen</h4>
+              <form id="dataForm">
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3">
+                    <label>Datum
+                      <input type="date" id="dateInput" required>
+                    </label>
+                  </div>
+                  <div class="cell medium-3">
+                    <label>Locatie
+                      <input type="text" id="locationInput" placeholder="Bijv. Rosewood" required>
+                    </label>
+                  </div>
+                  <div class="cell medium-3">
+                    <label>Zombies Verslagen
+                      <input type="number" id="zombieInput" min="0" required>
+                    </label>
+                  </div>
+                  <div class="cell medium-3">
+                    <label>Gezondheid (%)
+                      <input type="number" id="healthInput" min="0" max="100" required>
+                    </label>
+                  </div>
+                  <div class="cell small-12 text-right">
+                    <button type="submit" class="button alert">Voeg toe</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('dataForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const date = document.getElementById('dateInput').value;
+      const location = document.getElementById('locationInput').value;
+      const zombies = document.getElementById('zombieInput').value;
+      const health = document.getElementById('healthInput').value;
+      const table = document.getElementById('dataTable');
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${date}</td><td>${location}</td><td>${zombies}</td><td>${health}</td>`;
+      table.appendChild(row);
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
+
